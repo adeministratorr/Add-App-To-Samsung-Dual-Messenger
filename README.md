@@ -8,14 +8,64 @@ This script automates the process of cloning Android applications using ADB (And
 ### Prerequisites
 - ADB (Android Debug Bridge) installed on your computer
   - Download from [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)
-  - Or install via package manager:
-    ```bash
-    # macOS (using Homebrew)
-    brew install android-platform-tools
+  - Installation methods by operating system:
     
-    # Linux
-    sudo apt-get install adb
+    #### Windows
+    1. Using Chocolatey package manager:
+    ```bash
+    choco install adb
     ```
+    2. Manual installation:
+    - Download the [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP file
+    - Extract to a location (e.g., `C:\android-platform-tools`)
+    - Add to System Environment Variables:
+      - Open System Properties > Advanced > Environment Variables
+      - Add the extraction path to the PATH variable
+    - Verify installation: `adb --version`
+
+    #### macOS
+    1. Using Homebrew:
+    ```bash
+    brew install android-platform-tools
+    ```
+    2. Manual installation:
+    - Download the [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP file
+    - Extract to a location (e.g., `~/android-platform-tools`)
+    - Add to PATH in `~/.zshrc` or `~/.bash_profile`:
+    ```bash
+    export PATH="$PATH:~/android-platform-tools"
+    ```
+    - Reload shell configuration: `source ~/.zshrc` or `source ~/.bash_profile`
+    - Verify installation: `adb --version`
+
+    #### Linux
+    1. Using package manager:
+    ```bash
+    # Debian/Ubuntu
+    sudo apt-get update
+    sudo apt-get install adb
+
+    # Fedora
+    sudo dnf install android-tools
+
+    # Arch Linux
+    sudo pacman -S android-tools
+    ```
+    2. Manual installation:
+    - Download the [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP file
+    - Extract to a location (e.g., `/opt/android-platform-tools`)
+    - Add to PATH in `~/.bashrc` or `~/.zshrc`:
+    ```bash
+    export PATH="$PATH:/opt/android-platform-tools"
+    ```
+    - Reload shell configuration: `source ~/.bashrc` or `source ~/.zshrc`
+    - Verify installation: `adb --version`
+
+    #### Troubleshooting
+    - If `adb` command is not found: Verify PATH configuration and shell reload
+    - Permission issues on Linux: Add user to `plugdev` group: `sudo usermod -aG plugdev $USER`
+    - Device not detected: Install USB drivers (Windows) or add udev rules (Linux)
+
 - USB debugging enabled on your Android device
 - Device connected to computer via USB
 
