@@ -150,6 +150,65 @@ Bu script, ADB (Android Debug Bridge) kullanarak Android uygulamalarını klonla
 
 ### Gereksinimler
 - Bilgisayarınızda ADB (Android Debug Bridge) yüklü olmalı
+  - [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) adresinden indirin
+  - İşletim sistemine göre kurulum yöntemleri:
+    
+    #### Windows
+    1. Chocolatey paket yöneticisi kullanarak:
+    ```bash
+    choco install adb
+    ```
+    2. Manuel kurulum:
+    - [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP dosyasını indirin
+    - Bir konuma çıkartın (örn. `C:\android-platform-tools`)
+    - Sistem Ortam Değişkenlerine ekleyin:
+      - Sistem Özellikleri > Gelişmiş > Ortam Değişkenleri'ni açın
+      - Çıkartılan yolu PATH değişkenine ekleyin
+    - Kurulumu doğrulayın: `adb --version`
+
+    #### macOS
+    1. Homebrew kullanarak:
+    ```bash
+    brew install android-platform-tools
+    ```
+    2. Manuel kurulum:
+    - [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP dosyasını indirin
+    - Bir konuma çıkartın (örn. `~/android-platform-tools`)
+    - PATH'e ekleyin (`~/.zshrc` veya `~/.bash_profile` içinde):
+    ```bash
+    export PATH="$PATH:~/android-platform-tools"
+    ```
+    - Kabuk yapılandırmasını yeniden yükleyin: `source ~/.zshrc` veya `source ~/.bash_profile`
+    - Kurulumu doğrulayın: `adb --version`
+
+    #### Linux
+    1. Paket yöneticisi kullanarak:
+    ```bash
+    # Debian/Ubuntu
+    sudo apt-get update
+    sudo apt-get install adb
+
+    # Fedora
+    sudo dnf install android-tools
+
+    # Arch Linux
+    sudo pacman -S android-tools
+    ```
+    2. Manuel kurulum:
+    - [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP dosyasını indirin
+    - Bir konuma çıkartın (örn. `/opt/android-platform-tools`)
+    - PATH'e ekleyin (`~/.bashrc` veya `~/.zshrc` içinde):
+    ```bash
+    export PATH="$PATH:/opt/android-platform-tools"
+    ```
+    - Kabuk yapılandırmasını yeniden yükleyin: `source ~/.bashrc` veya `source ~/.zshrc`
+    - Kurulumu doğrulayın: `adb --version`
+
+    #### Sorun Giderme
+    - Eğer `adb` komutu bulunamazsa: PATH yapılandırmasını ve kabuk yeniden yüklemeyi doğrulayın
+    - Linux'ta izin sorunları: Kullanıcıyı `plugdev` grubuna ekleyin: `sudo usermod -aG plugdev $USER`
+    - Cihaz algılanmıyorsa: USB sürücülerini (Windows) veya udev kurallarını (Linux) yükleyin
+
 - Android cihazınızda USB hata ayıklama etkin olmalı
 - Cihaz USB ile bilgisayara bağlı olmalı
 
@@ -192,6 +251,65 @@ Bu script, ADB (Android Debug Bridge) kullanarak Android uygulamalarını klonla
 
 ### 前提条件
 - 计算机上安装了 ADB（Android Debug Bridge）
+  - 从 [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) 下载
+  - 根据操作系统的安装方法：
+    
+    #### Windows
+    1. 使用 Chocolatey 包管理器：
+    ```bash
+    choco install adb
+    ```
+    2. 手动安装：
+    - 下载 [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP 文件
+    - 解压到指定位置（例如：`C:\android-platform-tools`）
+    - 添加到系统环境变量：
+      - 打开系统属性 > 高级 > 环境变量
+      - 将解压路径添加到 PATH 变量
+    - 验证安装：`adb --version`
+
+    #### macOS
+    1. 使用 Homebrew：
+    ```bash
+    brew install android-platform-tools
+    ```
+    2. 手动安装：
+    - 下载 [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP 文件
+    - 解压到指定位置（例如：`~/android-platform-tools`）
+    - 添加到 PATH（在 `~/.zshrc` 或 `~/.bash_profile` 中）：
+    ```bash
+    export PATH="$PATH:~/android-platform-tools"
+    ```
+    - 重新加载 shell 配置：`source ~/.zshrc` 或 `source ~/.bash_profile`
+    - 验证安装：`adb --version`
+
+    #### Linux
+    1. 使用包管理器：
+    ```bash
+    # Debian/Ubuntu
+    sudo apt-get update
+    sudo apt-get install adb
+
+    # Fedora
+    sudo dnf install android-tools
+
+    # Arch Linux
+    sudo pacman -S android-tools
+    ```
+    2. 手动安装：
+    - 下载 [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP 文件
+    - 解压到指定位置（例如：`/opt/android-platform-tools`）
+    - 添加到 PATH（在 `~/.bashrc` 或 `~/.zshrc` 中）：
+    ```bash
+    export PATH="$PATH:/opt/android-platform-tools"
+    ```
+    - 重新加载 shell 配置：`source ~/.bashrc` 或 `source ~/.zshrc`
+    - 验证安装：`adb --version`
+
+    #### 故障排除
+    - 如果找不到 `adb` 命令：验证 PATH 配置和 shell 重新加载
+    - Linux 上的权限问题：将用户添加到 `plugdev` 组：`sudo usermod -aG plugdev $USER`
+    - 设备未检测到：安装 USB 驱动程序（Windows）或添加 udev 规则（Linux）
+
 - Android 设备上启用了 USB 调试
 - 设备通过 USB 连接到计算机
 
@@ -216,6 +334,65 @@ Bu script, ADB (Android Debug Bridge) kullanarak Android uygulamalarını klonla
 
 ### المتطلبات الأساسية
 - تثبيت ADB (Android Debug Bridge) على جهاز الكمبيوتر الخاص بك
+  - قم بالتحميل من [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools)
+  - طرق التثبيت حسب نظام التشغيل:
+    
+    #### Windows
+    1. باستخدام مدير الحزم Chocolatey:
+    ```bash
+    choco install adb
+    ```
+    2. التثبيت اليدوي:
+    - قم بتحميل ملف [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP
+    - قم بفك الضغط إلى موقع (مثال: `C:\android-platform-tools`)
+    - أضف إلى متغيرات النظام البيئية:
+      - افتح خصائص النظام > متقدم > متغيرات البيئة
+      - أضف مسار الاستخراج إلى متغير PATH
+    - تحقق من التثبيت: `adb --version`
+
+    #### macOS
+    1. باستخدام Homebrew:
+    ```bash
+    brew install android-platform-tools
+    ```
+    2. التثبيت اليدوي:
+    - قم بتحميل ملف [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP
+    - قم بفك الضغط إلى موقع (مثال: `~/android-platform-tools`)
+    - أضف إلى PATH (في `~/.zshrc` أو `~/.bash_profile`):
+    ```bash
+    export PATH="$PATH:~/android-platform-tools"
+    ```
+    - أعد تحميل إعدادات shell: `source ~/.zshrc` أو `source ~/.bash_profile`
+    - تحقق من التثبيت: `adb --version`
+
+    #### Linux
+    1. باستخدام مدير الحزم:
+    ```bash
+    # Debian/Ubuntu
+    sudo apt-get update
+    sudo apt-get install adb
+
+    # Fedora
+    sudo dnf install android-tools
+
+    # Arch Linux
+    sudo pacman -S android-tools
+    ```
+    2. التثبيت اليدوي:
+    - قم بتحميل ملف [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) ZIP
+    - قم بفك الضغط إلى موقع (مثال: `/opt/android-platform-tools`)
+    - أضف إلى PATH (في `~/.bashrc` أو `~/.zshrc`):
+    ```bash
+    export PATH="$PATH:/opt/android-platform-tools"
+    ```
+    - أعد تحميل إعدادات shell: `source ~/.bashrc` أو `source ~/.zshrc`
+    - تحقق من التثبيت: `adb --version`
+
+    #### استكشاف الأخطاء وإصلاحها
+    - إذا لم يتم العثور على أمر `adb`: تحقق من تكوين PATH وإعادة تحميل shell
+    - مشاكل الصلاحيات على Linux: أضف المستخدم إلى مجموعة `plugdev`: `sudo usermod -aG plugdev $USER`
+    - لم يتم اكتشاف الجهاز: قم بتثبيت برامج تشغيل USB (Windows) أو أضف قواعد udev (Linux)
+
 - تمكين تصحيح USB على جهاز Android الخاص بك
 - توصيل الجهاز بالكمبيوتر عبر USB
 
